@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BallFactory {
-	private static final Map<String, Ball> ballMap = new HashMap<>();
+	private static final Map<String, Ball> ballMap = new HashMap();
 	
 	public static Ball getBall(String color, String imageUrl) {
 		StringBuilder sb = new StringBuilder();
