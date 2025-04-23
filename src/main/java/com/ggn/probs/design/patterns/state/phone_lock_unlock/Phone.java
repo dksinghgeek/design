@@ -1,4 +1,4 @@
-package com.ggn.probs.design.patterns.state;
+package com.ggn.probs.design.patterns.state.phone_lock_unlock;
 
 public class Phone {
 	private State state;
