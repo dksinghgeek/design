@@ -1,4 +1,4 @@
-package com.ggn.probs.design.patterns.strategy;
+package com.ggn.probs.design.patterns.strategy.payment;
 
 public class PaymentSystem {
 	private PaymentStrategy paymentStrategy;

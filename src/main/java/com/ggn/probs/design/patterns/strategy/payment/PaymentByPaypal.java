@@ -1,4 +1,4 @@
-package com.ggn.probs.design.patterns.strategy;
+package com.ggn.probs.design.patterns.strategy.payment;
 
 public class PaymentByPaypal implements PaymentStrategy {
 
