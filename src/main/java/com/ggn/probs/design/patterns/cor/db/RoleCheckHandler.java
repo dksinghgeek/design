@@ -1,4 +1,4 @@
-package com.ggn.probs.design.patterns.cor;
+package com.ggn.probs.design.patterns.cor.db;
 
 public class RoleCheckHandler extends Handler {
 
