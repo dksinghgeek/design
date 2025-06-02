@@ -1,7 +1,7 @@
 package com.ggn.probs.design.patterns.objectpool;
 
 
-// connection pool with initial size of 3 and max size of 6
+// Thread connection pool with initial size of 3 and max size of 6.
 import java.util.ArrayList;
 import java.util.List;
 
