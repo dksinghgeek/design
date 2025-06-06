@@ -21,36 +21,30 @@ import com.ggn.probs.design.patterns.uber.payment.PaymentMethodStrategy;
 public class Demo {
 
 	public static void main(String[] args) {
-		Rider rider = new Rider();
-		rider.setId(UUID.randomUUID());
-		rider.setName("Devid");
-		rider.setMobileNo("1234567890");
-		rider.setEmail("abc@abc.com");
-		rider.setRating("5");
-		
+		Rider rider = loginRider();
+
 		System.out.println("Cab booking initiated by Rider");
 		RideManager rideManager = RideManager.getInstance();
 		RideRequest rideRequest = rideManager.book("Noida", "Delhi", rider.getId());
-		
+
 		Driver driver = null;
 		try {
 			DriverManager driverManager = DriverManager.getInstance();
 			DriverMatchStrategy driverMatch = driverManager.getDriver(DriverMatchType.RATING);
 			driver = driverMatch.match(rideRequest);
-			
-			System.out.println("Driver search complted : " + driver.getName());
-			
-			
+
+			System.out.println("Driver search completed : " + driver.getName());
+
 		} catch (Exception e) {
 			System.out.println("Error during driver matching");
 		}
-		
+
 		System.out.println("Trip Created");
 		Trip trip = rideManager.createTrip(rideRequest, driver.getId());
 		trip.setOtp(1234);
 		trip.setTripStatus(TripStatus.IN_PROGRESS);
 		System.out.println("Trip in progress");
-		
+
 		double rideCost = Double.valueOf(trip.getPrice());
 		try {
 			RatePlanManager ratePlanManager = RatePlanManager.getInstance();
@@ -69,11 +63,21 @@ public class Demo {
 		} catch (Exception ex) {
 			System.out.println("Error processing payment");
 		}
-		
+
 		trip.setTripStatus(TripStatus.COMPLETED);
-		
+
 		System.out.println("Trip completed");
 
+	}
+
+	private static Rider loginRider() {
+		Rider rider = new Rider();
+		rider.setId(UUID.randomUUID());
+		rider.setName("Devid");
+		rider.setMobileNo("1234567890");
+		rider.setEmail("abc@abc.com");
+		rider.setRating("5");
+		return rider;
 	}
 
 }
