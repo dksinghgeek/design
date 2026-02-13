@@ -44,18 +44,21 @@ public class TokenBucketRateLimiter implements RateLimiter {
 		double tokenToAdded = seconds * refillRate;
 
 		if (tokenToAdded > 0) {
-			this.tokens = Math.min(capacity, tokens + tokenToAdded);
+			tokens = Math.min(capacity, tokens + tokenToAdded);
 			this.lastRefillTime = now;
 		}
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		RateLimiter tokenBuket = new TokenBucketRateLimiter(5, 2);
 
-		if (tokenBuket.tryAcquire()) {
-			System.out.println("Successful");
-		} else {
-			System.out.println("Failed");
+		for (int i = 0; i < 10; i++) {
+			if (tokenBuket.tryAcquire()) {
+				System.out.println("Successful");
+			} else {
+				System.out.println("Failed");
+				Thread.sleep(1000);
+			}
 		}
 	}
 
